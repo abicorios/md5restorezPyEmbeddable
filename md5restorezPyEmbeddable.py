@@ -114,18 +114,18 @@ def myrestore(ipath,ito,ibuffer):
                 myrestore(thisthing,ito,ibuffer)
 mybuffer=r'\\?\C:\Windows\Temp\md5utils'
 if os.path.isdir(mybuffer): myrmtree(mybuffer)
-p7zx86=r'C:\Program Files (x86)\7-Zip'
+#p7zx86=r'C:\Program Files (x86)\7-Zip'
 p7zx64=r'C:\Program Files\7-Zip'
-while (not os.path.isdir(p7zx86)) and (not os.path.isdir(p7zx64)):
-    inp=str(input('Введите q чтобы выйти, или установите 7-Zip сейчас и введите здесь что угодно кроме q\n'))
-    if inp=='q':
-        exit()
-if os.path.isdir(p7zx64):
-    exe=p7zx64
-elif os.path.isdir(p7zx86):
-    exe=p7zx86
-else:
-    exit()
+#while (not os.path.isdir(p7zx86)) and (not os.path.isdir(p7zx64)):
+#    inp=str(input('Введите q чтобы выйти, или установите 7-Zip сейчас и введите здесь что угодно кроме q\n'))
+#    if inp=='q':
+#        exit()
+#if os.path.isdir(p7zx64):
+exe=p7zx64
+#elif os.path.isdir(p7zx86):
+#    exe=p7zx86
+#else:
+#    exit()
 myto=r'{}'.format(input('Введите путь к пустой папке, в которую нужно поместить результат, например D:\\roms by genre\n'))
 myto=norm(myto)
 if not os.path.isdir(myto): os.mkdir(myto)
