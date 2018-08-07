@@ -3,6 +3,7 @@ import sys
 parser = argparse.ArgumentParser(description="My parser")
 parser.add_argument('--myto',type=str)
 parser.add_argument('--myfrom',type=str)
+parser.add_argument('--mycsv',type=str)
 def main():
     args=parser.parse_args()
     import os
@@ -143,7 +144,8 @@ def main():
         if myto=='q':
             exit()
         myto=norm(myto)
-    mybase=r'{}'.format(input('Введите путь к файлу csv-базы, например D:\\result\\roms by genre ({}).csv\n'.format(pd.Timestamp.now().strftime('%d.%m.%Y'))))
+    mybase=args.mycsv
+#    mybase=r'{}'.format(input('Введите путь к файлу csv-базы, например D:\\result\\roms by genre ({}).csv\n'.format(pd.Timestamp.now().strftime('%d.%m.%Y'))))
     mybase=U(mybase)
     while not os.path.isfile(mybase):
         print('Ошибка! Файл {} не существует! \n'.format(mybase[4:]))
