@@ -4,6 +4,7 @@ parser = argparse.ArgumentParser(description="My parser")
 parser.add_argument('--myto',type=str)
 parser.add_argument('--myfrom',type=str)
 parser.add_argument('--mycsv',type=str)
+parser.add_argument('--myarch',type=str)
 def main():
     args=parser.parse_args()
     import os
@@ -163,9 +164,10 @@ def main():
             exit()
         myfrom=norm(myto)
     f = open(r'{}\mylog.txt'.format(myto), 'a')
-    archive=0
-    while archive != 'yes' and archive != 'no':
-        archive=str(input('Хотите добавить результаты в архивы? [yes|no]:\n'))
+    archive=args.myarch
+#    archive=0
+#    while archive != 'yes' and archive != 'no':
+#        archive=str(input('Хотите добавить результаты в архивы? [yes|no]:\n'))
     if not os.path.isdir(mybuffer):os.mkdir(mybuffer)
     topath='{}\\{}'.format(myto,drop(mybase.split('\\')[-1],'.'))
     notpath='{}\\Not Included'.format(myto)
