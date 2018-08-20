@@ -47,7 +47,8 @@ def main():
         if len(os.listdir(folder))>0: return False
         else: return True
     def p(a):
-        print(a.replace(myfrom,'').replace(myto,'').replace(exe,'').replace(mybuffer,''))
+        print(a)
+        #print(a.replace(myfrom,'').replace(myto,'').replace(exe,'').replace(mybuffer,''))
         f.write(str(a)+'\n')
     def nfolders(somepath):
         n=0
@@ -76,6 +77,9 @@ def main():
         else:
             return False
     def myrestore(ipath,ito,ibuffer):
+        print('ipath=',ipath)
+        print('ito=',ito)
+        print('ibuffer=',ibuffer)
         for i in os.listdir(ipath):
             thisthing=r'{}\{}'.format(ipath,i)
             if mytype(thisthing)=='file':
