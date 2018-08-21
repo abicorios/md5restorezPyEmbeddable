@@ -9,10 +9,15 @@ where go /q
 if not %errorlevel%==0 (choco install golang --x86 -y)
 where ruby /q
 if not %errorlevel%==0 (choco install ruby --x86 -y)
-where node /q
-if not %errorlevel%==0 (choco install nodejs --x86 -y)
 where vim /q
 if not %errorlevel%==0 (start https://ftp.nluug.nl/pub/vim/pc/gvim81.exe)
 @set /p a=It is a pause, press Enter after an installation of vim
 @set a=
+where conda /q
+if not %errorlevel%==0 (start https://repo.continuum.io/miniconda/Miniconda3-latest-Windows-x86.exe)
+@set /p a=It is a pause, press Enter after an installation of miniconda3
+@set a=
 call refreshenv
+call %USERPROFILE%\Miniconda3\Scripts\activate.bat %USERPROFILE%\Miniconda3
+call conda create -n dev python=3 pandas -y
+call deactivate
