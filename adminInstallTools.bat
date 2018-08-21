@@ -20,9 +20,9 @@ if not %errorlevel%==0 (start https://repo.continuum.io/miniconda/Miniconda3-lat
 call refreshenv
 call %USERPROFILE%\Miniconda3\Scripts\activate.bat %USERPROFILE%\Miniconda3
 if not exist %CONDA_PREFIX%\envs\dev call conda create -n dev python=3 pandas -y
-if not exist %CONDA_PREFIX%\envs\exe call conda create -n exe python=3 -y
+if not exist %CONDA_PREFIX%\envs\exe (call conda create -n exe python=3 -y
 call activate exe
 pip install pandas pyinstaller
 echo hiddenimports = ['pandas._libs.tslibs.timedeltas'] > %CONDA_PREFIX%\Lib\site-packages\PyInstaller\hooks\hook-pandas.py
-call deactivate
+call deactivate)
 call deactivate
