@@ -20,14 +20,14 @@ where ruby /q
 if not %errorlevel%==0 (choco install ruby --x86 -y
 set f=1)
 rem if not %errorlevel%==0 (start https://ftp.nluug.nl/pub/vim/pc/gvim81.exe)
-where conda /q
-if not %errorlevel%==0 (scoop bucket add extras
-scoop install miniconda3 -a 32bit
+if not exist %USERPROFILE%\scoop\apps\miniconda3 (call scoop bucket add extras
+call scoop install miniconda3 -a 32bit
 set f=1)
 if %f% equ 1 call refreshenv
 set f=
 rem call %USERPROFILE%\Miniconda3\Scripts\activate.bat %USERPROFILE%\Miniconda3
 call %USERPROFILE%\scoop\apps\miniconda3\current\Scripts\activate.bat %USERPROFILE%\scoop\apps\miniconda3\current
+call conda update --all -y
 if not exist %CONDA_PREFIX%\envs\dev call conda create -n dev python=3 pandas -y
 if not exist %CONDA_PREFIX%\envs\exe (call conda create -n exe python=3 -y
 call activate exe
