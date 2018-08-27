@@ -161,7 +161,7 @@ def main():
             thisthing=r'{}\{}'.format(topath,i)
             mycmd='"{}\\7z" a "{}.7z" "{}\\*" -mx9 -ms -sdel -mmt'.format(exe,thisthing,thisthing)
             p(mycmd)
-            subprocess.run(wraper(shlex.split(mycmd)))
+            subprocess.call(wraper(shlex.split(mycmd)))
             os.rmdir(thisthing)
     os.chdir(myto)
     myrmtree(mybuffer)
