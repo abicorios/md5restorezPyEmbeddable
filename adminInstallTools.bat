@@ -37,3 +37,7 @@ rem echo hiddenimports = ['pandas._libs.tslibs.timedeltas'] > %USERPROFILE%\scoo
 call deactivate)
 call deactivate
 if not exist %USERPROFILE%\scoop\apps\miniconda3\current\envs\exe\Lib\site-packages\PyInstaller\hooks\hook-pandas.py echo hiddenimports = ['pandas._libs.tslibs.timedeltas','pandas._libs.tslibs.np_datetime','pandas._libs.tslibs.nattype','pandas._libs.skiplist'] > %USERPROFILE%\scoop\apps\miniconda3\current\envs\exe\Lib\site-packages\PyInstaller\hooks\hook-pandas.py
+if not exist compileIfChanged git clone https://github.com/abicorios/compileIfChanged
+start /wait cmd /c "cd compileIfChanged && git pull"
+if not exist compileIfChanged.exe go build compileIfChanged\compileIfChanged.go
+compileIfChanged.exe compileIfChanged\compileIfChanged.go compileIfChanged.exe go build compileIfChanged\compileIfChanged.go
