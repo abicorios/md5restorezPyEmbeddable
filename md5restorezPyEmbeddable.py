@@ -5,6 +5,7 @@ parser.add_argument('--myto',type=str)
 parser.add_argument('--myfrom',type=str)
 parser.add_argument('--mycsv',type=str)
 parser.add_argument('--myarch',type=str)
+parser.add_argument('--myexe',type=str)
 def main():
     args=parser.parse_args()
     import os
@@ -13,6 +14,7 @@ def main():
     import hashlib
     import subprocess, shlex
     import re
+    import sys
     def myrmtree(imypath):
         for r, d, f in os.walk(imypath):
             for i in f:
@@ -48,6 +50,7 @@ def main():
         else: return True
     def p(a):
         print(a)
+        sys.stdout.flush()
         #print(a.replace(myfrom,'').replace(myto,'').replace(exe,'').replace(mybuffer,''))
         f.write(str(a)+'\n')
     def nfolders(somepath):
@@ -110,7 +113,7 @@ def main():
                 if inbuffer(ipath,ibuffer):
                     myosremove(thisthing)
             if mytype(thisthing)=='archive':
-                    mycmd='"{}\\7z" x "{}" -o"{}" -aou'.format(exe,thisthing,ibuffer)
+                    mycmd='"{}\\7za" x "{}" -o"{}" -aou'.format(exe,thisthing,ibuffer)
                     p(mycmd)
                     subprocess.call(wraper(shlex.split(mycmd)))
                     if inbuffer(ipath,ibuffer):
@@ -125,12 +128,13 @@ def main():
     mybuffer=r'\\?\C:\Windows\Temp\md5utils'
     if os.path.isdir(mybuffer): myrmtree(mybuffer)
     #p7zx86=r'C:\Program Files (x86)\7-Zip'
-    p7zx64=r'C:\Program Files\7-Zip'
+    #p7zx64=r'C:\Program Files\7-Zip'
     #while (not os.path.isdir(p7zx86)) and (not os.path.isdir(p7zx64)):
     #    if inp=='q':
     #        exit()
     #if os.path.isdir(p7zx64):
-    exe=p7zx64
+    #exe=p7zx64
+    exe=args.myexe
     #elif os.path.isdir(p7zx86):
     #    exe=p7zx86
     #else:
@@ -159,7 +163,7 @@ def main():
     if archive=='yes':
         for i in set(t[t['processed']==1]['path']):
             thisthing=r'{}\{}'.format(topath,i)
-            mycmd='"{}\\7z" a "{}.7z" "{}\\*" -mx9 -ms -sdel -mmt'.format(exe,thisthing,thisthing)
+            mycmd='"{}\\7za" a "{}.7z" "{}\\*" -mx9 -ms -sdel -mmt'.format(exe,thisthing,thisthing)
             p(mycmd)
             subprocess.call(wraper(shlex.split(mycmd)))
             os.rmdir(thisthing)
