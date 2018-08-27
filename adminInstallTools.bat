@@ -41,3 +41,5 @@ if not exist compileIfChanged git clone https://github.com/abicorios/compileIfCh
 start /wait cmd /c "cd compileIfChanged && git pull"
 if not exist compileIfChanged.exe go build compileIfChanged\compileIfChanged.go
 compileIfChanged.exe compileIfChanged\compileIfChanged.go compileIfChanged.exe go build compileIfChanged\compileIfChanged.go
+if not exist 7zGitMirror git clone https://github.com/abicorios/7zGitMirror
+if not exist 7z1805-extra move 7zGitMirror\7z1805-extra
