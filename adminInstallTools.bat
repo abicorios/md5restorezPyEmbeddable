@@ -28,12 +28,12 @@ set f=
 rem call %USERPROFILE%\Miniconda3\Scripts\activate.bat %USERPROFILE%\Miniconda3
 call %USERPROFILE%\scoop\apps\miniconda3\current\Scripts\activate.bat %USERPROFILE%\scoop\apps\miniconda3\current
 call conda update --all -y
-if not exist %CONDA_PREFIX%\envs\dev call conda create -n dev python=3 pandas -y
-if not exist %CONDA_PREFIX%\envs\exe (call conda create -n exe python=3 -y
+if not exist %CONDA_PREFIX%\envs\dev call conda create -n dev python=2 pandas -y
+if not exist %CONDA_PREFIX%\envs\exe (call conda create -n exe python=2 -y
 call activate exe
 call pip install pandas pyinstaller
 rem echo hiddenimports = ['pandas._libs.tslibs.timedeltas'] > %CONDA_PREFIX%\Lib\site-packages\PyInstaller\hooks\hook-pandas.py
 rem echo hiddenimports = ['pandas._libs.tslibs.timedeltas'] > %USERPROFILE%\scoop\apps\miniconda3\current\envs\exe\Lib\site-packages\PyInstaller\hooks\hook-pandas.py
 call deactivate)
 call deactivate
-if not exist %USERPROFILE%\scoop\apps\miniconda3\current\envs\exe\Lib\site-packages\PyInstaller\hooks\hook-pandas.py echo hiddenimports = ['pandas._libs.tslibs.timedeltas'] > %USERPROFILE%\scoop\apps\miniconda3\current\envs\exe\Lib\site-packages\PyInstaller\hooks\hook-pandas.py
+if not exist %USERPROFILE%\scoop\apps\miniconda3\current\envs\exe\Lib\site-packages\PyInstaller\hooks\hook-pandas.py echo hiddenimports = ['pandas._libs.tslibs.timedeltas','pandas._libs.tslibs.np_datetime','pandas._libs.tslibs.nattype','pandas._libs.skiplist'] > %USERPROFILE%\scoop\apps\miniconda3\current\envs\exe\Lib\site-packages\PyInstaller\hooks\hook-pandas.py

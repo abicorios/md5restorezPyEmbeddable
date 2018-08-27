@@ -1,6 +1,6 @@
 call %USERPROFILE%\scoop\apps\miniconda3\current\Scripts\activate.bat %USERPROFILE%\scoop\apps\miniconda3\current
 call activate exe
-if exist mybuild rmdir mybuild
+if exist mybuild rmdir mybuild /s /q
 mkdir mybuild
 cd mybuild
 copy ..\md5restorezPyEmbeddable.py /y

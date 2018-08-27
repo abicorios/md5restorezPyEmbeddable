@@ -77,9 +77,6 @@ def main():
         else:
             return False
     def myrestore(ipath,ito,ibuffer):
-        print('ipath=',ipath)
-        print('ito=',ito)
-        print('ibuffer=',ibuffer)
         for i in os.listdir(ipath):
             thisthing=r'{}\{}'.format(ipath,i)
             if mytype(thisthing)=='file':
@@ -115,7 +112,7 @@ def main():
             if mytype(thisthing)=='archive':
                     mycmd='"{}\\7z" x "{}" -o"{}" -aou'.format(exe,thisthing,ibuffer)
                     p(mycmd)
-                    subprocess.run(wraper(shlex.split(mycmd)))
+                    subprocess.call(wraper(shlex.split(mycmd)))
                     if inbuffer(ipath,ibuffer):
                         os.remove(thisthing)
                     myrestore(ibuffer,ito,ibuffer)
@@ -130,7 +127,6 @@ def main():
     #p7zx86=r'C:\Program Files (x86)\7-Zip'
     p7zx64=r'C:\Program Files\7-Zip'
     #while (not os.path.isdir(p7zx86)) and (not os.path.isdir(p7zx64)):
-    #    inp=str(input('Введите q чтобы выйти, или установите 7-Zip сейчас и введите здесь что угодно кроме q\n'))
     #    if inp=='q':
     #        exit()
     #if os.path.isdir(p7zx64):
@@ -140,38 +136,14 @@ def main():
     #else:
     #    exit()
     myto=args.myto
-#    myto=r'{}'.format(input('Введите путь к пустой папке, в которую нужно поместить результат, например D:\\roms by genre\n'))
     myto=norm(myto)
     if not os.path.isdir(myto): os.mkdir(myto)
-    while len(os.listdir(myto))>0:
-        print('Ошибка! Папка {} не пуста! \n'.format(myto[4:]))
-        myto=r'{}'.format(input('Введите путь к пустой папке для размещения результата. Или введите q чтобы выйти.\n'))
-        if myto=='q':
-            exit()
-        myto=norm(myto)
     mybase=args.mycsv
-#    mybase=r'{}'.format(input('Введите путь к файлу csv-базы, например D:\\result\\roms by genre ({}).csv\n'.format(pd.Timestamp.now().strftime('%d.%m.%Y'))))
     mybase=U(mybase)
-    while not os.path.isfile(mybase):
-        print('Ошибка! Файл {} не существует! \n'.format(mybase[4:]))
-        mybase=r'{}'.format(input('Выберите актуальный файл csv-базы. Или введите q чтобы выйти.\n'))
-        if mybase=='q':
-            exit()
-        mybase=U(mybase)
     myfrom=args.myfrom
-#    myfrom=r'{}'.format(input('Введите путь к источнику файлов, например D:\\Good and NonGood roms\n'))
     myfrom=norm(myfrom)
-    while not os.path.isdir(myfrom):
-        print('Ошибка! Папка {} не существует!\n'.format(myfrom[4:]))
-        myfrom=r'{}'.format(input('Выберите актуальную папку. Или введите q чтобы выйти.\n'))
-        if myfrom=='q':
-            exit()
-        myfrom=norm(myto)
     f = open(r'{}\mylog.txt'.format(myto), 'a')
     archive=args.myarch
-#    archive=0
-#    while archive != 'yes' and archive != 'no':
-#        archive=str(input('Хотите добавить результаты в архивы? [yes|no]:\n'))
     if not os.path.isdir(mybuffer):os.mkdir(mybuffer)
     topath='{}\\{}'.format(myto,drop(mybase.split('\\')[-1],'.'))
     notpath='{}\\Not Included'.format(myto)
