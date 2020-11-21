@@ -1,3 +1,4 @@
+call adminInstallTools.bat
 call %USERPROFILE%\scoop\apps\miniconda3\current\Scripts\activate.bat %USERPROFILE%\scoop\apps\miniconda3\current
 call activate exe
 if exist mybuild rmdir mybuild /s /q
