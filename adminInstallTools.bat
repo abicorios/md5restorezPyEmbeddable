@@ -31,7 +31,7 @@ call conda update --all -y
 if not exist %CONDA_PREFIX%\envs\dev call conda create -n dev python=2 pandas -y
 if not exist %CONDA_PREFIX%\envs\exe (call conda create -n exe python=2 -y
 call activate exe
-call pip install pandas pyinstaller
+call pip install pandas pyinstaller=3.3.1
 rem echo hiddenimports = ['pandas._libs.tslibs.timedeltas'] > %CONDA_PREFIX%\Lib\site-packages\PyInstaller\hooks\hook-pandas.py
 rem echo hiddenimports = ['pandas._libs.tslibs.timedeltas'] > %USERPROFILE%\scoop\apps\miniconda3\current\envs\exe\Lib\site-packages\PyInstaller\hooks\hook-pandas.py
 call deactivate)
